@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <img id="foto">
+        <h2 id="nome">Nome</h2>
+        <h2 id="numero">Id pokemon</h2>
+        <h2 id="altura">altura</h2>
+        <h2 id="peso">peso</h2>
+    </div>
+    <button id="botao1">Buscar</butt on>
+    <script>
+        function loadpk(){
+            let url = 'https://pokeapi.co/api/v2/pokemon/25/';
+            fetch(url)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    console.clear();
+                    console.log(data);
+                    let img = data['sprites']['front_default'];
+                    document.getElementById('foto').setAttribute('src', img);
+                    document.getElementById('nome').innerHTML = data['name'];
+                    document.getElementById('idPokemon').innerHTML = data['id'];
+                    document.getElementById('altura').innerHTML = data['height'];
+                    document.getElementById('peso').innerHTML = data['weight'];
+                })
+                .catch((erro) => {
+                    console.log("Erro" + erro)
+                })
+        }
+        document.getElementById('botao1').onclick = loadpk;
+    </script>
+</body>
+</html>
